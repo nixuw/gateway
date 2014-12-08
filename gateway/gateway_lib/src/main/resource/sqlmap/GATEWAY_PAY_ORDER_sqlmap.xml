@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="GATEWAY_PAY_ORDER" >
+  <resultMap id="GatewayPayOrderResult" class="com.pay.dao.entity.GatewayPayOrder" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="APP_REQUEST_ID" property="appRequestId" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="BIGINT" />
+    <result column="APP_ACCOUNT" property="appAccount" jdbcType="VARCHAR" />
+    <result column="BIZ_CODE" property="bizCode" jdbcType="VARCHAR" />
+    <result column="BIZ_DESCRIPTION" property="bizDescription" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="ECHO_CONTENT" property="echoContent" jdbcType="VARCHAR" />
+    <result column="PARTER_SERIAL_NUM" property="parterSerialNum" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+     <result column="PAYMENT_DATE" property="paymentDate" jdbcType="TIMESTAMP" />
+      <result column="USER_IP" property="userIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayPayOrderResult" parameterClass="com.pay.dao.entity.GatewayPayOrder" >
+    select ID, APP_REQUEST_ID, ORDER_NO, CHANNEL_ID, APP_ACCOUNT, BIZ_CODE, BIZ_DESCRIPTION,
+      USER_NAME, AMOUNT, ECHO_CONTENT, PARTER_SERIAL_NUM, STATUS, CREATE_DATE, UPDATE_DATE,PAYMENT_DATE,USER_IP
+    from GATEWAY_PAY_ORDER
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayPayOrder" >
+    delete from GATEWAY_PAY_ORDER
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayPayOrder" >
+    insert into GATEWAY_PAY_ORDER (APP_REQUEST_ID, ORDER_NO, CHANNEL_ID, APP_ACCOUNT, BIZ_CODE,
+      BIZ_DESCRIPTION, USER_NAME, AMOUNT, ECHO_CONTENT, PARTER_SERIAL_NUM, STATUS, CREATE_DATE,
+      UPDATE_DATE,PAYMENT_DATE,USER_IP)
+    values ( #appRequestId:VARCHAR#, #orderNo:VARCHAR#, #channelId:BIGINT#,
+      #appAccount:VARCHAR#, #bizCode:VARCHAR#, #bizDescription:VARCHAR#, #userName:VARCHAR#,
+      #amount:DECIMAL#, #echoContent:VARCHAR#, #parterSerialNum:VARCHAR#, #status:VARCHAR#,
+      now(), now(),#paymentDate:TIMESTAMP#,#userIp:VARCHAR#)
+       <selectKey resultClass="java.lang.Long" keyProperty="id" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayPayOrder" >
+    update GATEWAY_PAY_ORDER
+    set APP_REQUEST_ID = #appRequestId:VARCHAR#,
+      ORDER_NO = #orderNo:VARCHAR#,
+      CHANNEL_ID = #channelId:BIGINT#,
+      APP_ACCOUNT = #appAccount:VARCHAR#,
+      BIZ_CODE = #bizCode:VARCHAR#,
+      BIZ_DESCRIPTION = #bizDescription:VARCHAR#,
+      USER_NAME = #userName:VARCHAR#,
+      AMOUNT = #amount:DECIMAL#,
+      ECHO_CONTENT = #echoContent:VARCHAR#,
+      PARTER_SERIAL_NUM = #parterSerialNum:VARCHAR#,
+      STATUS = #status:VARCHAR#,
+      CREATE_DATE = #createDate:TIMESTAMP#,
+      UPDATE_DATE = now(),
+      PAYMENT_DATE = #paymentDate:TIMESTAMP#,
+      USER_IP = #userIp:VARCHAR#
+    where ID = #id:BIGINT#
+   
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayPayOrder" >
+    update GATEWAY_PAY_ORDER
+     set  UPDATE_DATE = now()
+      <isNotNull prepend="," property="appRequestId" >
+        APP_REQUEST_ID = #appRequestId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderNo" >
+        ORDER_NO = #orderNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelId" >
+        CHANNEL_ID = #channelId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="appAccount" >
+        APP_ACCOUNT = #appAccount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bizCode" >
+        BIZ_CODE = #bizCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bizDescription" >
+        BIZ_DESCRIPTION = #bizDescription:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userName" >
+        USER_NAME = #userName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userIp" >
+        USER_IP = #userIp:VARCHAR#
+      </isNotNull>
+     
+      <isNotNull prepend="," property="echoContent" >
+        ECHO_CONTENT = #echoContent:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="parterSerialNum" >
+        PARTER_SERIAL_NUM = #parterSerialNum:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentDate" >
+        PAYMENT_DATE = #paymentDate:TIMESTAMP#
+      </isNotNull>
+      
+    where ID = #id:BIGINT#
+     <isNotNull prepend=" and " property="fromStatus" >
+        STATUS = #fromStatus:VARCHAR#
+      </isNotNull>
+       <isNotNull prepend=" and " property="amount" >
+        AMOUNT = #amount:DECIMAL#
+      </isNotNull>
+  </update>
+  
+   <select id="queryByOrderNo" resultMap="GatewayPayOrderResult"  >
+    select ID, APP_REQUEST_ID, ORDER_NO, CHANNEL_ID, APP_ACCOUNT, BIZ_CODE, BIZ_DESCRIPTION,
+      USER_NAME, AMOUNT, ECHO_CONTENT, PARTER_SERIAL_NUM, STATUS, CREATE_DATE, UPDATE_DATE,PAYMENT_DATE,USER_IP
+    from GATEWAY_PAY_ORDER
+    where ORDER_NO = #value:VARCHAR#
+  </select>
+</sqlMap>

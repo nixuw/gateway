@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+        "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+    <settings cacheModelsEnabled="true"
+              enhancementEnabled="false"
+              lazyLoadingEnabled="false"
+              maxRequests="3000"
+              maxSessions="3000"
+              maxTransactions="3000"
+              useStatementNamespaces="true"/>
+ 
+    
+    <sqlMap resource="sqlmap/GATEWAY_ALIPAY_REQUEST_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_ALIPAY_RESPONSE_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_APP_ACCOUNT_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_APP_CHANNEL_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_APP_NOTIFY_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_APP_REQUEST_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_CHANNEL_sqlmap.xml"/>
+    
+    <sqlMap resource="sqlmap/GATEWAY_PAY_ORDER_sqlmap.xml"/>
+    
+     <sqlMap resource="sqlmap/GATEWAY_UNIONPAY_REQUEST_sqlmap.xml"/>
+    <sqlMap resource="sqlmap/GATEWAY_UNIONPAY_RESPONSE_sqlmap.xml"/>
+</sqlMapConfig>

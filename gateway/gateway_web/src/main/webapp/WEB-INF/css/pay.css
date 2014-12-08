@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+.pay-style-icon1,.pay-style-icon2,.pay-style-icon3{background:url(../images/bank.png) no-repeat; margin:0 20px 0 0; border:1px solid #ccc;}
+.pay-style-icon1{display:inline-block; float:left; background-position:-1px -3px; width:112px; height:38px;}
+.pay-style-icon2{display:inline-block; float:left; background-position:-135px -3px; width:112px; height:38px;}
+.pay-style-icon3{display:inline-block; float:left; background-position:-269px -3px; width:112px; height:38px;}
+.pay-box{float:left; width:990px; border:2px solid #fbb714; margin:20px 0 0; background:#f3f3f3;}
+.pay-box1{float:left; width:990px; margin:20px 0 0;}
+.pay-box h3,.pay-box1 h3{padding:0 15px; font-weight:400;}
+.pay-info{float:left; width:960px; margin:5px 15px 0; padding:0 0 10px;}
+.pay-info ul li{float:left;  padding:0 0 5px; width:100%; height:24px; line-height:24px; }
+.pay-info label,.pay-info span,.pay-info a{margin:0; line-height:24px;}
+.pay-info span{margin:0 10px 0 0;}
+.pay-info a{color:#0071bd;}
+.pay-info ul li.bank{padding:5px 0; line-height:40px; height:40px;}
+.pay-info ul li.pay-button{height:50px; line-height:50px;}
+.pay-info ul li.pay-button a{margin:10px 0 0; color:#fff; line-height:48px;}
+.pay-other{float:left; line-height:40px; padding:0 0 0 15px;}
+.pay-title{position:relative; float:left; width:992px; height:30px; margin:10px 0 0 0; border-left:1px solid #ddd; border-right:1px solid #ddd; border-top:1px solid #ddd; border-bottom:2px solid #fbb714; background:#f3f3f3;}
+.pay-title ul{position:absolute; top:-8px; left:-1px;}
+.pay-title ul li{float:left; width:128px;}
+.pay-title ul li a{display:block; width:128px; height:32px; margin:7px 0 0; border-right:1px solid #ddd; font:normal 16px/32px "Microsoft YaHei"; text-align:center; color:#666;}
+.pay-title ul li a:hover,.pay-title ul li a.selected{height:38px; background:#fffdee; border:2px solid #fbb714; border-bottom:none; color:#333; text-decoration:none; margin:0;}
+.bank-box{float:left; width:930px; padding:30px; margin:0 0 20px 0; background:#fffdee; border:2px solid #fbb714; border-top:none;}
+.bank-box h5 span{font-weight:400; color:#909090; margin:0 0 0 5px;}
+.bank-select{float:left;}
+.bank-select ul{clear:both; padding:15px 0;}
+.bank-select input{display:block; float:left; margin:10px 5px 0 0;}
+.bank-select ul li{float:left; margin:0 10px 15px 5px; +margin:0 10px 15px 0; _margin:0 10px 15px 5px;}
+.bank-select a{display:block; float:left; width:183px; height:36px; line-height:36px; border:1px solid #ccc; background:#fff;}
+.bank-select a:hover,.bank-select a.selected{border:1px solid #f36523;}
+.bank-button{float:left; width:900px; margin:10px 0 0 23px;}
+.bank-button a{padding:0 15px;}
+
+
+/*银行icon*/
+.taobao-icon,.bank-icon,.icbc-icon,.jianhang-icon
+,.nonghang-icon,.youzhen-icon,.jiaotong-icon,.zhaohang-icon
+,.china-icon,.guangda-icon,.zhongxin-icon,.shenfa-icon
+,.pufa-icon,.mingsheng-icon,.xinye-icon,.pingan-icon,.guangfa-icon
+,.nongshang-icon,.shanghai-icon,.ninbo-icon,.hangzhou-icon
+,.beijing-icon,.bjnongshang-icon,.UPOP-icon,.ALIPAY-icon,.kq-icon
+{display:block; float:left; background:url(../images/bank.png) no-repeat;}
+.taobao-icon{background-position:0 -5px; width:106px; height:34px;}/* 淘宝支付*/
+.bank-icon{background-position:-112px -5px; width:106px; height:34px;}/* 在线支付*/
+.icbc-icon{background-position:-1px -45px; width:120px; height:36px;}/* 工行银行*/
+.jianhang-icon{background-position:-202px -45px; width:120px; height:36px;}/* 建设银行*/
+.nonghang-icon{background-position:-408px -45px; width:120px; height:36px;}/* 农业银行*/
+.youzhen-icon{background-position:-1px -92px; width:120px; height:36px;}/* 邮政*/
+.jiaotong-icon{background-position:-202px -92px; width:120px; height:36px;}/* 交通银行*/
+.zhaohang-icon{background-position:-408px -92px; width:120px; height:36px;}/* 招商银行*/
+.china-icon{background-position:-1px -139px; width:120px; height:36px;}/* 中国银行*/
+.guangda-icon{background-position:-202px -139px; width:120px; height:36px;}/* 光大银行*/
+.zhongxin-icon{background-position:-408px -139px; width:120px; height:36px;}/* 中信银行*/
+.shenfa-icon{background-position:-1px -187px; width:120px; height:36px;}/* 深圳发展银行*/
+.pufa-icon{background-position:-202px -187px; width:120px; height:36px;}/* 浦发银行*/
+.mingsheng-icon{background-position:-408px -187px; width:120px; height:36px;}/* 民生银行*/
+.xinye-icon{background-position:-1px -236px; width:120px; height:36px;}/* 兴业银行*/
+.pingan-icon{background-position:-202px -236px; width:120px; height:36px;}/* 平安银行*/
+.guangfa-icon{background-position:-408px -236px; width:120px; height:36px;}/* 广发银行*/
+.nongshang-icon{background-position:-1px -283px; width:120px; height:36px;}/* 农商银行*/
+.shanghai-icon{background-position:-202px -283px; width:120px; height:36px;}/* 上海银行*/
+.ninbo-icon{background-position:-408px -283px; width:120px; height:36px;}/* 宁波银行*/
+.hangzhou-icon{background-position:-1px -331px; width:120px; height:36px;}/* 杭洲银行*/
+.beijing-icon{background-position:-202px -331px; width:120px; height:36px;}/* 北京银行*/
+.bjnongshang-icon{background-position:-408px -331px; width:120px; height:36px;}/* 北京农商银行*/
+
+/*支付平台*/
+.UPOP-icon{background-position:-1px -423px; width:120px; height:36px;}/* 网银在线*/
+.ALIPAY-icon{background-position:-202px -423px; width:120px; height:36px;}/* 支付宝*/
+.kq-icon{background-position:-408px -423px; width:120px; height:36px;}/* 快钱*/

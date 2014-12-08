@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE abatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Abator for iBATIS Configuration 1.0//EN" "http://ibatis.apache.org/dtd/abator-config_1_0.dtd">
+<abatorConfiguration >
+ 
+  <abatorContext >
+   
+  
+    <commentGenerator type="org.apache.ibatis.abator.internal.SimpleCommentGenerator"></commentGenerator>
+ 
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/gateway" 
+    userId="root" password="root" >
+      <classPathEntry location="D:\maven_repo\mysql\mysql-connector-java\5.1.22\mysql-connector-java-5.1.22.jar" />
+    </jdbcConnection>
+    
+    <javaModelGenerator targetPackage="com.pay.dao.entity" targetProject="gateway_lib/src/main/java" />
+    
+    <sqlMapGenerator targetPackage="com.pay.dao.entity" targetProject="gateway_lib/src/main/java" type="org.apache.ibatis.abator.internal.sqlmap.SimpleSqlMapGeneratorImpl">
+    </sqlMapGenerator>
+    
+    <daoGenerator targetPackage="com.pay.dao" targetProject="gateway_lib/src/main/java" type="org.apache.ibatis.abator.internal.java.dao.SimpleDAOGenerator" > 
+		 <property name="methodNameCalculator" value="org.apache.ibatis.abator.internal.SimpleDAOMethodNameCalculator"></property>
+    </daoGenerator>
+ 
+    
+    <table tableName="GATEWAY_UNIONPAY_REQUEST" enableDeleteByExample="false"  enableCountByExample="false" enableUpdateByExample="false" enableSelectByExample="false">
+    </table>
+    
+     <table tableName="GATEWAY_UNIONPAY_RESPONSE" enableDeleteByExample="false"  enableCountByExample="false" enableUpdateByExample="false" enableSelectByExample="false">
+    </table>
+
+
+  </abatorContext>
+</abatorConfiguration>

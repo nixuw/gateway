@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="GATEWAY_APP_NOTIFY" >
+  <resultMap id="GatewayAppNotifyResult" class="com.pay.dao.entity.GatewayAppNotify" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GATEWAY_ORDER_NO" property="gatewayOrderNo" jdbcType="VARCHAR" />
+    <result column="RETRY_COUNT" property="retryCount" jdbcType="SMALLINT" />
+    <result column="LAST_RETRY_DATE" property="lastRetryDate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="GATEWAY_ORDER_STATUS" property="gatewayOrderStatus" jdbcType="VARCHAR" />
+    <result column="SIGN" property="sign" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayAppNotifyResult" parameterClass="com.pay.dao.entity.GatewayAppNotify" >
+    select ID, GATEWAY_ORDER_NO, RETRY_COUNT, LAST_RETRY_DATE, STATUS, GATEWAY_ORDER_STATUS, SIGN,
+      CREATE_DATE, UPDATE_DATE
+    from GATEWAY_APP_NOTIFY
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayAppNotify" >
+    delete from GATEWAY_APP_NOTIFY
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayAppNotify" >
+    insert into GATEWAY_APP_NOTIFY ( GATEWAY_ORDER_NO, RETRY_COUNT, LAST_RETRY_DATE, STATUS,
+      GATEWAY_ORDER_STATUS, SIGN, CREATE_DATE, UPDATE_DATE)
+    values (#gatewayOrderNo:VARCHAR#, #retryCount:SMALLINT#, now(),
+      #status:VARCHAR#, #gatewayOrderStatus:VARCHAR#, #sign:VARCHAR#, now(),
+      now())
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayAppNotify" >
+    update GATEWAY_APP_NOTIFY
+    set GATEWAY_ORDER_NO = #gatewayOrderNo:VARCHAR#,
+      RETRY_COUNT = #retryCount:SMALLINT#,
+      LAST_RETRY_DATE = #lastRetryDate:TIMESTAMP#,
+      STATUS = #status:VARCHAR#,
+      GATEWAY_ORDER_STATUS = #gatewayOrderStatus:VARCHAR#,
+      SIGN = #sign:VARCHAR#,
+      CREATE_DATE = #createDate:TIMESTAMP#,
+      UPDATE_DATE = #updateDate:TIMESTAMP#
+    where ID = #id:BIGINT#
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayAppNotify" >
+    update GATEWAY_APP_NOTIFY
+    set LAST_RETRY_DATE = now(),
+    UPDATE_DATE = now(),
+    RETRY_COUNT = RETRY_COUNT + 1
+     
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:VARCHAR#
+      </isNotNull>
+     
+      <isNotNull prepend="," property="sign" >
+        SIGN = #sign:VARCHAR#
+      </isNotNull>
+     
+     
+    where GATEWAY_ORDER_STATUS = #gatewayOrderStatus:VARCHAR#
+    and GATEWAY_ORDER_NO = #gatewayOrderNo:VARCHAR#
+  </update>
+  
+    <select id="select" resultMap="GatewayAppNotifyResult" parameterClass="map" >
+    select ID, GATEWAY_ORDER_NO, RETRY_COUNT, LAST_RETRY_DATE, STATUS, GATEWAY_ORDER_STATUS, SIGN,
+      CREATE_DATE, UPDATE_DATE
+    from GATEWAY_APP_NOTIFY
+    where GATEWAY_ORDER_NO = #orderNo#
+    and GATEWAY_ORDER_STATUS = #payStatus#
+  </select>
+  
+   <select id="selectFailed" resultMap="GatewayAppNotifyResult" parameterClass="int" >
+    select ID, GATEWAY_ORDER_NO, RETRY_COUNT, LAST_RETRY_DATE, STATUS, GATEWAY_ORDER_STATUS, SIGN,
+      CREATE_DATE, UPDATE_DATE
+    from GATEWAY_APP_NOTIFY
+    where status != 1 and <![CDATA[ RETRY_COUNT < 8 ]]> and  ADDDATE(LAST_RETRY_DATE, INTERVAL pow(2,RETRY_COUNT) MINUTE) <![CDATA[ < ]]> NOW()
+    limit #value#
+  </select>
+</sqlMap>

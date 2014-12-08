@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="GATEWAY_ALIPAY_REQUEST" >
+  <resultMap id="GatewayAlipayRequestResult" class="com.pay.dao.entity.GatewayAlipayRequest" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="SERVICE" property="service" jdbcType="VARCHAR" />
+    <result column="SIGN" property="sign" jdbcType="VARCHAR" />
+    <result column="OUT_TRADE_NO" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="DECIMAL" />
+    <result column="BODY" property="body" jdbcType="VARCHAR" />
+    <result column="SHOW_URL" property="showUrl" jdbcType="VARCHAR" />
+    <result column="EXTRA_COMMON_PARAM" property="extraCommonParam" jdbcType="VARCHAR" />
+    <result column="QR_PAY_MODE" property="qrPayMode" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayAlipayRequestResult" parameterClass="com.pay.dao.entity.GatewayAlipayRequest" >
+    select ID, SERVICE, SIGN, OUT_TRADE_NO, SUBJECT, PAYMENT_TYPE, TOTAL_FEE, BODY, SHOW_URL,
+      EXTRA_COMMON_PARAM, QR_PAY_MODE
+    from GATEWAY_ALIPAY_REQUEST
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayAlipayRequest" >
+    delete from GATEWAY_ALIPAY_REQUEST
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayAlipayRequest" >
+    insert into GATEWAY_ALIPAY_REQUEST (ID, SERVICE, SIGN, OUT_TRADE_NO, SUBJECT, PAYMENT_TYPE,
+      TOTAL_FEE, BODY, SHOW_URL, EXTRA_COMMON_PARAM, QR_PAY_MODE)
+    values (#id:BIGINT#, #service:VARCHAR#, #sign:VARCHAR#, #outTradeNo:VARCHAR#, #subject:VARCHAR#,
+      #paymentType:VARCHAR#, #totalFee:DECIMAL#, #body:VARCHAR#, #showUrl:VARCHAR#,
+      #extraCommonParam:VARCHAR#, #qrPayMode:VARCHAR#)
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayAlipayRequest" >
+    update GATEWAY_ALIPAY_REQUEST
+    set SERVICE = #service:VARCHAR#,
+      SIGN = #sign:VARCHAR#,
+      OUT_TRADE_NO = #outTradeNo:VARCHAR#,
+      SUBJECT = #subject:VARCHAR#,
+      PAYMENT_TYPE = #paymentType:VARCHAR#,
+      TOTAL_FEE = #totalFee:DECIMAL#,
+      BODY = #body:VARCHAR#,
+      SHOW_URL = #showUrl:VARCHAR#,
+      EXTRA_COMMON_PARAM = #extraCommonParam:VARCHAR#,
+      QR_PAY_MODE = #qrPayMode:VARCHAR#
+    where ID = #id:BIGINT#
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayAlipayRequest" >
+    update GATEWAY_ALIPAY_REQUEST
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="service" >
+        SERVICE = #service:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sign" >
+        SIGN = #sign:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="outTradeNo" >
+        OUT_TRADE_NO = #outTradeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subject" >
+        SUBJECT = #subject:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentType" >
+        PAYMENT_TYPE = #paymentType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totalFee" >
+        TOTAL_FEE = #totalFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="body" >
+        BODY = #body:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="showUrl" >
+        SHOW_URL = #showUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="extraCommonParam" >
+        EXTRA_COMMON_PARAM = #extraCommonParam:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="qrPayMode" >
+        QR_PAY_MODE = #qrPayMode:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:BIGINT#
+  </update>
+</sqlMap>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="gateway_unionpay_request" >
+  <resultMap id="GatewayUnionpayRequestResult" class="com.pay.dao.entity.GatewayUnionpayRequest" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="TRANS_TYPE" property="transType" jdbcType="VARCHAR" />
+    <result column="ORIGQ_ID" property="origqId" jdbcType="VARCHAR" />
+    <result column="COMMODITY_URL" property="commodityUrl" jdbcType="VARCHAR" />
+    <result column="COMMODITY_NAME" property="commodityName" jdbcType="VARCHAR" />
+    <result column="ORDER_NUMBER" property="orderNumber" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="DECIMAL" />
+    <result column="ORDER_CURRENCY" property="orderCurrency" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="CUSTOMER_IP" property="customerIp" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_NAME" property="customerName" jdbcType="VARCHAR" />
+    <result column="TRANS_TIMEOUT" property="transTimeout" jdbcType="BIGINT" />
+    <result column="SIGNATURE" property="signature" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayUnionpayRequestResult" parameterClass="com.pay.dao.entity.GatewayUnionpayRequest" >
+    select ID, VERSION, TRANS_TYPE, ORIGQ_ID, COMMODITY_URL, COMMODITY_NAME, ORDER_NUMBER,
+      ORDER_AMOUNT, ORDER_CURRENCY, ORDER_TIME, CUSTOMER_IP, CUSTOMER_NAME, TRANS_TIMEOUT,
+      SIGNATURE, CREATE_DATE
+    from gateway_unionpay_request
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayUnionpayRequest" >
+    delete from gateway_unionpay_request
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayUnionpayRequest" >
+    insert into gateway_unionpay_request (ID, VERSION, TRANS_TYPE, ORIGQ_ID, COMMODITY_URL,
+      COMMODITY_NAME, ORDER_NUMBER, ORDER_AMOUNT, ORDER_CURRENCY, ORDER_TIME, CUSTOMER_IP,
+      CUSTOMER_NAME, TRANS_TIMEOUT, SIGNATURE, CREATE_DATE)
+    values (#id:BIGINT#, #version:VARCHAR#, #transType:VARCHAR#, #origqId:VARCHAR#,
+      #commodityUrl:VARCHAR#, #commodityName:VARCHAR#, #orderNumber:VARCHAR#, #orderAmount:DECIMAL#,
+      #orderCurrency:VARCHAR#, #orderTime:TIMESTAMP#, #customerIp:VARCHAR#, #customerName:VARCHAR#,
+      #transTimeout:BIGINT#, #signature:VARCHAR#, #createDate:TIMESTAMP#)
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayUnionpayRequest" >
+    update gateway_unionpay_request
+    set VERSION = #version:VARCHAR#,
+      TRANS_TYPE = #transType:VARCHAR#,
+      ORIGQ_ID = #origqId:VARCHAR#,
+      COMMODITY_URL = #commodityUrl:VARCHAR#,
+      COMMODITY_NAME = #commodityName:VARCHAR#,
+      ORDER_NUMBER = #orderNumber:VARCHAR#,
+      ORDER_AMOUNT = #orderAmount:DECIMAL#,
+      ORDER_CURRENCY = #orderCurrency:VARCHAR#,
+      ORDER_TIME = #orderTime:TIMESTAMP#,
+      CUSTOMER_IP = #customerIp:VARCHAR#,
+      CUSTOMER_NAME = #customerName:VARCHAR#,
+      TRANS_TIMEOUT = #transTimeout:BIGINT#,
+      SIGNATURE = #signature:VARCHAR#,
+      CREATE_DATE = #createDate:TIMESTAMP#
+    where ID = #id:BIGINT#
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayUnionpayRequest" >
+    update gateway_unionpay_request
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="version" >
+        VERSION = #version:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transType" >
+        TRANS_TYPE = #transType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="origqId" >
+        ORIGQ_ID = #origqId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commodityUrl" >
+        COMMODITY_URL = #commodityUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="commodityName" >
+        COMMODITY_NAME = #commodityName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderNumber" >
+        ORDER_NUMBER = #orderNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderAmount" >
+        ORDER_AMOUNT = #orderAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="orderCurrency" >
+        ORDER_CURRENCY = #orderCurrency:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="orderTime" >
+        ORDER_TIME = #orderTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="customerIp" >
+        CUSTOMER_IP = #customerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="customerName" >
+        CUSTOMER_NAME = #customerName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="transTimeout" >
+        TRANS_TIMEOUT = #transTimeout:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="signature" >
+        SIGNATURE = #signature:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE = #createDate:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:BIGINT#
+  </update>
+</sqlMap>

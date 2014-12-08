@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+   	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+   	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+   	http://www.springframework.org/schema/task http://www.springframework.org/schema/util/spring-task-3.1.xsd">
+   	
+   	
+    <context:annotation-config/>
+    <mvc:annotation-driven />
+    <!-- scan location -->
+    <context:component-scan base-package="com.pay.**.**"/>
+
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:system.properties</value>
+                <value>classpath:alipay.properties</value>
+                <value>classpath:unionpay.properties</value>
+                
+                
+            </list>
+        </property>
+        <property name="localOverride" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+
+    <!-- velocity config -->
+    <bean id="velocityConfigurer"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath">
+            <value>WEB-INF/view</value>
+        </property>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="file.resource.loader.cache">false</prop>
+                <prop key="velocimacro.library.autoreload">true</prop>
+                <prop key="velocimacro.permissions.allow.inline.to.replace.global">true</prop>
+                <prop key="velocimacro.permissions.allow.inline.local.scope">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 处理velocity布局 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".vm"/>
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocity_toolbox.xml"/>
+        <property name="contentType" value="text/html; charset=utf-8"></property>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+    </bean>
+
+	
+
+    <import resource="classpath:META-INF/spring/db/springContext_jdbc.xml"/>
+
+    <import resource="classpath*:META-INF/spring/springContext_*.xml"/>
+
+</beans>

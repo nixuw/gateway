@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+.success,.fault{background:url(../images/pay-status.png) no-repeat;}
+.success{display:block; float:left; background-position:-5px -5px; width:34px; height:34px; margin:3px 5px 0 0;}
+.fault{display:block; float:left; background-position:-49px -5px; width:34px; height:34px; margin:3px 5px 0 0;}
+.pay-shadow{clear:both; padding:20px 0 50px; width:1000px; margin:0 auto;}
+.pay-mb100{position:relative; float:left; width:1000px; margin-bottom:180px;}
+.shadow-t-w,.shadow-b-w,.shadow-l-w,.shadow-r-w{font-size:0; background:url(../../common/images/icon/normal-shadow.png) no-repeat;}
+.shadow-t-w{float:left;width:100%; height:10px; background-position:-5px 0;}
+.shadow-b-w{float:right; width:470px; height:10px; background-position:-25px -108px;}
+.shadow-l-w{float:left; width:3px; height:80px; background-position:-5px -10px;}
+.shadow-r-w{position:absolute; float:left; width:3px; height:80px; background-position:-491px -30px; right:0; bottom:10px;}
+.pay-shadow .shadow-r-w{margin-top:220px;}
+.pay-box{float:left; width:992px; padding:30px 0; border:1px solid #ededed;}
+.pay-box h3{padding:0 0 0 30px;}
+.pay-info{float:left; width:940px; margin:5px 30px 0; padding:0 0 10px;}
+.pay-info ul li{float:left;  padding:0 0 5px; width:100%; height:24px; line-height:24px; }
+.pay-info label,.pay-info span,.pay-info a{margin:0; line-height:24px;}
+.pay-info span{margin:0 10px 0 0;}
+.pay-info a{color:#0071bd;}

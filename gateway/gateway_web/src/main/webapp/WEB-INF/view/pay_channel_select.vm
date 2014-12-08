@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="iplui_init">
+
+<head>
+<title> 选择支付渠道</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+   <body>
+   
+      <form action="thridpay.htm" method="post">
+          <input type="hidden" name="appRequestId" value="$appRequest.id"/>      
+           <input type="hidden" name="ramdon" value="$ramdon"/>
+         
+	         业务编号:$appRequest.bizCode  <br/>
+	         支付token:$appRequest.requestToken  <br/>
+	         业务描述:$appRequest.bizDescription <br/>
+	         用户名:$appRequest.userName  <br/>
+	         支付金额:$appRequest.amount  <br/>
+	         回传内容:$appRequest.echoContent  <br/>
+	          请选择支付渠道:   
+	          
+        #if ($payChannel.size() > 0)
+           #foreach ($channel in $payChannel)
+             <input type="radio" name="selectChannel" value="$channel.channelId"/>
+             $channel.channelName
+           #end
+        #end
+        
+          <input type="submit" value="确认支付"/>
+      </form>
+   </body> 
+</html>

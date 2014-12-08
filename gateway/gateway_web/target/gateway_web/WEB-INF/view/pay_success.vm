@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html class="iplui_init">
+
+<head>
+<title> 支付成功 </title>
+</head>
+   <body>
+      恭喜!网关订单: ${orderNo} ,支付成功
+   </body> 
+</html>

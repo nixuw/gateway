@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="GATEWAY_APP_ACCOUNT" >
+  <resultMap id="GatewayAppAccountResult" class="com.pay.dao.entity.GatewayAppAccount" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_KEY" property="accountKey" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="BIGINT" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="BIGINT" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+   <resultMap id="ValidPayChannelResult" class="com.pay.dao.vo.ValidPayChannel" >
+    <result column="CHANNEL_ID" property="channelId" jdbcType="BIGINT" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="APP_ACCOUNT" property="appAccount" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_KEY" property="accountKey" jdbcType="VARCHAR" />
+    <result column="PAY_URL" property="payUrl" jdbcType="VARCHAR" />
+    <result column="RETURN_URL" property="returnUrl" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayAppAccountResult" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    select ID, ACCOUNT, ACCOUNT_KEY, NOTIFY_URL, STATUS, CREATE_BY, CREATE_DATE, UPDATE_BY,
+      UPDATE_DATE
+    from GATEWAY_APP_ACCOUNT
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    delete from GATEWAY_APP_ACCOUNT
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    insert into GATEWAY_APP_ACCOUNT (ID, ACCOUNT, ACCOUNT_KEY, NOTIFY_URL, STATUS, CREATE_BY,
+      CREATE_DATE, UPDATE_BY, UPDATE_DATE)
+    values (#id:BIGINT#, #account:VARCHAR#, #accountKey:VARCHAR#, #notifyUrl:VARCHAR#,
+      #status:CHAR#, #createBy:BIGINT#, #createDate:TIMESTAMP#, #updateBy:BIGINT#,
+      #updateDate:TIMESTAMP#)
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    update GATEWAY_APP_ACCOUNT
+    set ACCOUNT = #account:VARCHAR#,
+      ACCOUNT_KEY = #accountKey:VARCHAR#,
+      NOTIFY_URL = #notifyUrl:VARCHAR#,
+      STATUS = #status:CHAR#,
+      CREATE_BY = #createBy:BIGINT#,
+      CREATE_DATE = #createDate:TIMESTAMP#,
+      UPDATE_BY = #updateBy:BIGINT#,
+      UPDATE_DATE = #updateDate:TIMESTAMP#
+    where ID = #id:BIGINT#
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    update GATEWAY_APP_ACCOUNT
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="account" >
+        ACCOUNT = #account:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="accountKey" >
+        ACCOUNT_KEY = #accountKey:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="notifyUrl" >
+        NOTIFY_URL = #notifyUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="status" >
+        STATUS = #status:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createBy" >
+        CREATE_BY = #createBy:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="createDate" >
+        CREATE_DATE = #createDate:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="updateBy" >
+        UPDATE_BY = #updateBy:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="updateDate" >
+        UPDATE_DATE = #updateDate:TIMESTAMP#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:BIGINT#
+  </update>
+  
+    <select id="selectByAccount" resultMap="GatewayAppAccountResult" parameterClass="com.pay.dao.entity.GatewayAppAccount" >
+    select ID, ACCOUNT, ACCOUNT_KEY, NOTIFY_URL, STATUS, CREATE_BY, CREATE_DATE, UPDATE_BY,
+      UPDATE_DATE
+    from GATEWAY_APP_ACCOUNT
+    where STATUS='1' AND ACCOUNT = #account:VARCHAR#
+  </select>
+  
+   <select id="selectValidPayChannel" resultMap="ValidPayChannelResult" parameterClass="map" >
+   select a.ACCOUNT as app_account,c.CHANNEL_NAME,c.CHANNEL_CODE,c.ID as channel_id, c.ACCOUNT, c.ACCOUNT_KEY, c.PAY_URL, c.RETURN_URL, c.NOTIFY_URL  from gateway_app_account a, gateway_app_channel ac, gateway_channel c
+    where c.STATUS = '1' and a.STATUS = '1' and ac.STATUS = '1' AND ac.CHANNEL_ID = c.ID
+      <isNotNull prepend=" and " property="account" >
+        a.account=#account#
+      </isNotNull>
+      
+      <isNotNull prepend=" and " property="channelId" >
+       c.ID=#channelId#
+      </isNotNull>
+  </select>
+  
+</sqlMap>

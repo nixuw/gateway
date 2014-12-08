@@ -1,0 +1,17 @@
+<toolbox>
+	<xhtml>true</xhtml>
+	 <!-- 
+	 <tool>
+		<key>stringUtil</key>
+		<scope>application</scope>
+		<class>com.plocc.framework.utils.StringUtils</class>
+	</tool>
+	<tool>
+		<key>dateUtil</key>
+		<scope>application</scope>
+		<class>com.plocc.framework.utils.DateFormatUtils</class>
+	</tool>
+	 -->
+	 
+	
+</toolbox>

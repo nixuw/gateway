@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+       default-autowire="byName">
+   
+
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocations">
+            <list>
+                <value>classpath:ibatis/sqlmap_gateway_dao.xml</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <bean id="baseDAO" abstract="true">
+        <property name="sqlMapClient" ref="sqlMapClientTemplate"/>
+    </bean>
+
+   <bean id="gatewayAlipayRequestDAO" class="com.pay.dao.impl.GatewayAlipayRequestDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayAlipayResponseDAO" class="com.pay.dao.impl.GatewayAlipayResponseDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayAppAccountDAO" class="com.pay.dao.impl.GatewayAppAccountDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayAppChannelDAO" class="com.pay.dao.impl.GatewayAppChannelDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayAppNotifyDAO" class="com.pay.dao.impl.GatewayAppNotifyDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayAppRequestDAO" class="com.pay.dao.impl.GatewayAppRequestDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayChannelDAO" class="com.pay.dao.impl.GatewayChannelDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayPayOrderDAO" class="com.pay.dao.impl.GatewayPayOrderDAOImpl" parent="baseDAO"/>
+   <bean id="gatewayUnionpayRequestDAO" class="com.pay.dao.impl.GatewayUnionpayRequestDAOImpl" parent="baseDAO"/>
+    <bean id="gatewayUnionpayResponseDAO" class="com.pay.dao.impl.GatewayUnionpayResponseDAOImpl" parent="baseDAO"/>
+   
+</beans>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="GATEWAY_ALIPAY_RESPONSE" >
+  <resultMap id="GatewayAlipayResponseResult" class="com.pay.dao.entity.GatewayAlipayResponse" >
+    <result column="ID" property="id" jdbcType="BIGINT" />
+    <result column="IS_SUCCESS" property="isSuccess" jdbcType="VARCHAR" />
+    <result column="SIGN" property="sign" jdbcType="VARCHAR" />
+    <result column="OUT_TRADE_NO" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+    <result column="EXTERFACE" property="exterface" jdbcType="VARCHAR" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="TRADE_STATUS" property="tradeStatus" jdbcType="VARCHAR" />
+    <result column="NOTIFY_ID" property="notifyId" jdbcType="VARCHAR" />
+    <result column="NOTIFY_TIME" property="notifyTime" jdbcType="TIMESTAMP" />
+    <result column="NOTIFY_TYPE" property="notifyType" jdbcType="VARCHAR" />
+    <result column="SELLER_EMAIL" property="sellerEmail" jdbcType="VARCHAR" />
+    <result column="BUYER_EMAIL" property="buyerEmail" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
+    <result column="BUYER_ID" property="buyerId" jdbcType="VARCHAR" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="DECIMAL" />
+    <result column="BODY" property="body" jdbcType="VARCHAR" />
+    <result column="EXTRA_COMMON_PARAM" property="extraCommonParam" jdbcType="VARCHAR" />
+    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="GMT_PAYMENT" property="gmtPayment" jdbcType="TIMESTAMP" />
+    <result column="GMT_CLOSE" property="gmtClose" jdbcType="TIMESTAMP" />
+    <result column="REFUND_STATUS" property="refundStatus" jdbcType="VARCHAR" />
+    <result column="GMT_REFUND" property="gmtRefund" jdbcType="TIMESTAMP" />
+    <result column="OUT_CHANNEL_AMOUNT" property="outChannelAmount" jdbcType="VARCHAR" />
+    <result column="BUSINESS_SCENE" property="businessScene" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectById" resultMap="GatewayAlipayResponseResult" parameterClass="com.pay.dao.entity.GatewayAlipayResponse" >
+    select ID, IS_SUCCESS, SIGN, OUT_TRADE_NO, SUBJECT, PAYMENT_TYPE, EXTERFACE, TRADE_NO,
+      TRADE_STATUS, NOTIFY_ID, NOTIFY_TIME, NOTIFY_TYPE, SELLER_EMAIL, BUYER_EMAIL, SELLER_ID,
+      BUYER_ID, TOTAL_FEE, BODY, EXTRA_COMMON_PARAM, GMT_CREATE, GMT_PAYMENT, GMT_CLOSE,
+      REFUND_STATUS, GMT_REFUND, OUT_CHANNEL_AMOUNT, BUSINESS_SCENE
+    from GATEWAY_ALIPAY_RESPONSE
+    where ID = #id:BIGINT#
+  </select>
+  <delete id="deleteById" parameterClass="com.pay.dao.entity.GatewayAlipayResponse" >
+    delete from GATEWAY_ALIPAY_RESPONSE
+    where ID = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.pay.dao.entity.GatewayAlipayResponse" >
+    insert into GATEWAY_ALIPAY_RESPONSE (ID, IS_SUCCESS, SIGN, OUT_TRADE_NO, SUBJECT, PAYMENT_TYPE,
+      EXTERFACE, TRADE_NO, TRADE_STATUS, NOTIFY_ID, NOTIFY_TIME, NOTIFY_TYPE, SELLER_EMAIL,
+      BUYER_EMAIL, SELLER_ID, BUYER_ID, TOTAL_FEE, BODY, EXTRA_COMMON_PARAM, GMT_CREATE,
+      GMT_PAYMENT, GMT_CLOSE, REFUND_STATUS, GMT_REFUND, OUT_CHANNEL_AMOUNT, BUSINESS_SCENE)
+    values (#id:BIGINT#, #isSuccess:VARCHAR#, #sign:VARCHAR#, #outTradeNo:VARCHAR#,
+      #subject:VARCHAR#, #paymentType:VARCHAR#, #exterface:VARCHAR#, #tradeNo:VARCHAR#,
+      #tradeStatus:VARCHAR#, #notifyId:VARCHAR#, #notifyTime:TIMESTAMP#, #notifyType:VARCHAR#,
+      #sellerEmail:VARCHAR#, #buyerEmail:VARCHAR#, #sellerId:VARCHAR#, #buyerId:VARCHAR#,
+      #totalFee:DECIMAL#, #body:VARCHAR#, #extraCommonParam:VARCHAR#, #gmtCreate:TIMESTAMP#,
+      #gmtPayment:TIMESTAMP#, #gmtClose:TIMESTAMP#, #refundStatus:VARCHAR#, #gmtRefund:TIMESTAMP#,
+      #outChannelAmount:VARCHAR#, #businessScene:VARCHAR#)
+  </insert>
+  <update id="updateById" parameterClass="com.pay.dao.entity.GatewayAlipayResponse" >
+    update GATEWAY_ALIPAY_RESPONSE
+    set IS_SUCCESS = #isSuccess:VARCHAR#,
+      SIGN = #sign:VARCHAR#,
+      OUT_TRADE_NO = #outTradeNo:VARCHAR#,
+      SUBJECT = #subject:VARCHAR#,
+      PAYMENT_TYPE = #paymentType:VARCHAR#,
+      EXTERFACE = #exterface:VARCHAR#,
+      TRADE_NO = #tradeNo:VARCHAR#,
+      TRADE_STATUS = #tradeStatus:VARCHAR#,
+      NOTIFY_ID = #notifyId:VARCHAR#,
+      NOTIFY_TIME = #notifyTime:TIMESTAMP#,
+      NOTIFY_TYPE = #notifyType:VARCHAR#,
+      SELLER_EMAIL = #sellerEmail:VARCHAR#,
+      BUYER_EMAIL = #buyerEmail:VARCHAR#,
+      SELLER_ID = #sellerId:VARCHAR#,
+      BUYER_ID = #buyerId:VARCHAR#,
+      TOTAL_FEE = #totalFee:DECIMAL#,
+      BODY = #body:VARCHAR#,
+      EXTRA_COMMON_PARAM = #extraCommonParam:VARCHAR#,
+      GMT_CREATE = #gmtCreate:TIMESTAMP#,
+      GMT_PAYMENT = #gmtPayment:TIMESTAMP#,
+      GMT_CLOSE = #gmtClose:TIMESTAMP#,
+      REFUND_STATUS = #refundStatus:VARCHAR#,
+      GMT_REFUND = #gmtRefund:TIMESTAMP#,
+      OUT_CHANNEL_AMOUNT = #outChannelAmount:VARCHAR#,
+      BUSINESS_SCENE = #businessScene:VARCHAR#
+    where ID = #id:BIGINT#
+  </update>
+  <update id="updateByIdSelective" parameterClass="com.pay.dao.entity.GatewayAlipayResponse" >
+    update GATEWAY_ALIPAY_RESPONSE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="isSuccess" >
+        IS_SUCCESS = #isSuccess:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sign" >
+        SIGN = #sign:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="outTradeNo" >
+        OUT_TRADE_NO = #outTradeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="subject" >
+        SUBJECT = #subject:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="paymentType" >
+        PAYMENT_TYPE = #paymentType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="exterface" >
+        EXTERFACE = #exterface:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeNo" >
+        TRADE_NO = #tradeNo:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="tradeStatus" >
+        TRADE_STATUS = #tradeStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="notifyId" >
+        NOTIFY_ID = #notifyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="notifyTime" >
+        NOTIFY_TIME = #notifyTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="notifyType" >
+        NOTIFY_TYPE = #notifyType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerEmail" >
+        SELLER_EMAIL = #sellerEmail:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="buyerEmail" >
+        BUYER_EMAIL = #buyerEmail:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerId" >
+        SELLER_ID = #sellerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="buyerId" >
+        BUYER_ID = #buyerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="totalFee" >
+        TOTAL_FEE = #totalFee:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="body" >
+        BODY = #body:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="extraCommonParam" >
+        EXTRA_COMMON_PARAM = #extraCommonParam:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gmtCreate" >
+        GMT_CREATE = #gmtCreate:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="gmtPayment" >
+        GMT_PAYMENT = #gmtPayment:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="gmtClose" >
+        GMT_CLOSE = #gmtClose:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="refundStatus" >
+        REFUND_STATUS = #refundStatus:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="gmtRefund" >
+        GMT_REFUND = #gmtRefund:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="outChannelAmount" >
+        OUT_CHANNEL_AMOUNT = #outChannelAmount:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="businessScene" >
+        BUSINESS_SCENE = #businessScene:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:BIGINT#
+  </update>
+</sqlMap>

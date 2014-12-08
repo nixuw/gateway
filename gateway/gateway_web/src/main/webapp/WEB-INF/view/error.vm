@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html class="iplui_init">
+
+<head>
+<title> 支付失败 </title>
+</head>
+   <body>
+      ${msg}
+   </body> 
+</html>

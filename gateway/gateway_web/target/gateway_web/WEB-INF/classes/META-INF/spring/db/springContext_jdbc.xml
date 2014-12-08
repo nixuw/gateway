@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>${gateway.datasource.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${gateway.datasource.url}</value>
+		</property>
+		<property name="username">
+			<value>${gateway.datasource.username}</value>
+		</property>
+		<property name="password">
+			<value>${gateway.datasource.password}</value>
+		</property>
+		<property name="maxActive" >
+			<value>${gateway.datasource.maxActive}</value>
+		</property>
+		<property name="maxIdle" >
+			<value>${gateway.datasource.maxIdle}</value>
+		</property>
+		<property name="maxWait" >
+			<value>${gateway.datasource.maxWait}</value>
+		</property>
+		
+		<property name="testWhileIdle" >
+			<value>${gateway.datasource.testWhileIdle}</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis" >
+			<value>${gateway.datasource.timeBetweenEvictionRunsMillis}</value>
+		</property>
+		<property name="minEvictableIdleTimeMillis" >
+			<value>${gateway.datasource.minEvictableIdleTimeMillis}</value>
+		</property>
+		<property name="validationQuery" >
+			<value>${gateway.datasource.validationQuery}</value>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>	
+    
+    <bean id="transactionService" class="com.pay.transaction.TransactionService">
+        <constructor-arg index="0" ref="transactionManager"/>
+    </bean> 
+
+ 
+
+</beans>
